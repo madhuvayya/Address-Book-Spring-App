@@ -36,8 +36,7 @@ public class AddressBookService implements IAddressBookService {
     @Override
     public Contact updateContact(int contactId, ContactDTO contactDTO) {
         Contact contact = this.getContactById(contactId);
-        contact.setName(contactDTO.name);
-        contact.setPhoneNumber(contactDTO.phoneNumber);
+        contact = new Contact(contactId,contactDTO);
         contactList.set(contactId-1, contact);
         return contact;
     }
