@@ -30,7 +30,11 @@ public @Data class ContactData {
 
     public ContactData() { }
 
-    public ContactData(ContactDTO contactDTO) {
+    public ContactData(ContactDTO contactDTO){
+        this.updateContactData(contactDTO);
+    }
+
+    public void updateContactData(ContactDTO contactDTO) {
         this.fullName = contactDTO.fullName;
         this.phoneNumber = contactDTO.phoneNumber;
         this.address = contactDTO.address;
