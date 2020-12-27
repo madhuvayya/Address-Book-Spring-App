@@ -8,9 +8,11 @@ import javax.validation.constraints.Pattern;
 
 public @ToString class ContactDTO {
 
+    @NotBlank(message = "Full name can't be empty")
     @Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]{2,}$", message = "Name is Invalid")
     public String fullName;
 
+    @NotBlank(message = "Phone number can't be empty")
     @Pattern(regexp = "^([+])?(91)?[6-9]{1}[0-9]{9,11}$", message = "Entered invalid phone number")
     public String phoneNumber;
 
@@ -24,6 +26,6 @@ public @ToString class ContactDTO {
     @NotBlank(message = "State can't be empty")
     public String state;
 
-    @NotBlank(message = "State can't be empty")
+    @NotBlank(message = "Zipcode can't be empty")
     public String zipcode;
 }
