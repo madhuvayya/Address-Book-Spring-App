@@ -1,7 +1,7 @@
 package com.bridgelabz.addressbookapp.controllers;
 
 import com.bridgelabz.addressbookapp.dto.ResponseDTO;
-import com.bridgelabz.addressbookapp.model.Contact;
+import com.bridgelabz.addressbookapp.model.ContactData;
 import com.bridgelabz.addressbookapp.dto.ContactDTO;
 import com.bridgelabz.addressbookapp.service.IAddressBookService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,14 +23,14 @@ public class AddressBookController {
 
     @RequestMapping(value = {"","/","/get"})
     public ResponseEntity<ResponseDTO> getAllContacts(){
-        List<Contact> contactList = addressBookService.getContactsData();
+        List<ContactData> contactList = addressBookService.getContactsData();
         ResponseDTO responseDTO = new ResponseDTO("GET REST call to get all contact is successful",contactList);
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
     }
 
     @GetMapping("/get/{contactId}")
     public ResponseEntity<ResponseDTO> getContactById(@PathVariable("contactId") int contactId){
-        Contact contact = addressBookService.getContactById(contactId);
+        ContactData contact = addressBookService.getContactById(contactId);
         ResponseDTO responseDTO = new ResponseDTO("GET REST Call for contact id "+ contactId +" is successful",contact);
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
     }
@@ -38,7 +38,7 @@ public class AddressBookController {
     @PostMapping("/create")
     public ResponseEntity<ResponseDTO> createContact(@Valid @RequestBody ContactDTO contactDTO){
         log.debug("Received request for creating new contact with data:",contactDTO.toString());
-        Contact contact = addressBookService.createContact(contactDTO);
+        ContactData contact = addressBookService.createContact(contactDTO);
         log.debug("New contact is created.");
         ResponseDTO responseDTO = new ResponseDTO("POST REST call for creating contact is successful",contact);
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
@@ -48,7 +48,7 @@ public class AddressBookController {
     public ResponseEntity<ResponseDTO> updateContact(@PathVariable("contactId") int contactId,
                                                      @Valid @RequestBody ContactDTO contactDTO){
         log.debug("Received request for updating existing contact with data:",contactDTO.toString());
-        Contact contact = addressBookService.updateContact(contactId,contactDTO);
+        ContactData contact = addressBookService.updateContact(contactId,contactDTO);
         log.debug("Contact is Updated");
         ResponseDTO responseDTO = new ResponseDTO("PUT RETS call for updating contact is successful",contact);
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
