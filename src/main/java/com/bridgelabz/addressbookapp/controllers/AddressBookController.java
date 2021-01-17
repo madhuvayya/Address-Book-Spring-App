@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/addressbook")
 @Slf4j
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 public class AddressBookController {
 
     @Autowired
